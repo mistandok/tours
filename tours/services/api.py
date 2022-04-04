@@ -66,3 +66,25 @@ def get_tours_data(tours_filter: dict = None) -> List['Tour']:
     :return: tour list
     """
     return TOUR_CONTROLLER.get(tours_filter)
+
+
+def plural_word(word: str, count: int) -> str:
+    """
+    This function return plural form for sended word.
+    :param word: word for modification
+    :param count: count
+    :return:
+    """
+    words = {
+        'тур': ['тур', 'тура', 'туров']
+    }
+
+    if word not in words:
+        raise Warning(f"For word {word} the plural form doesn't setup")
+
+    if count % 10 == 1 and count % 100 != 11:
+        return words[word][0]
+    elif 2 <= count % 10 <= 4 and (count % 100 < 10 or count % 100 >= 20):
+        return words[word][1]
+    else:
+        return words[word][2]
