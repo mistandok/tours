@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import Http404
 
 from .services.api import (
     is_tour_exists, is_departure_exists, get_main_data,
@@ -18,7 +19,7 @@ def main_view(request):
 
 def departure_view(request, departure: str):
     if not is_departure_exists(departure):
-        return handler404_view(request)
+        raise Http404
 
     departures = get_departures_data()
     current_departure = get_departures_data({'id': departure})[-1]
@@ -44,7 +45,7 @@ def departure_view(request, departure: str):
 
 def tour_view(request, tour_id: int):
     if not is_tour_exists(tour_id):
-        return handler404_view(request)
+        raise Http404
 
     departures = get_departures_data()
     tour = get_tours_data({'id': tour_id})[-1]
