@@ -51,7 +51,7 @@ def get_main_data() -> dict:
     return title_data
 
 
-def get_departures_data(departures_filter: list = None) -> List['Departure']:
+def get_departures_data(departures_filter: dict = None) -> List['Departure']:
     """
     The function returns departures.
     :param departures_filter: filter for select departure
