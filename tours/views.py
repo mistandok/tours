@@ -25,19 +25,13 @@ def departure_view(request, departure: str):
     current_departure = get_departures_data({'id': departure})[-1]
     tours = get_tours_data({'departure': departure})
     min_max_attributes = get_min_max_attr_for_tours(tours, 'price', 'nights')
-    count_tours = len(tours)
-    plural_tour = get_plural_word('тур', count_tours)
-
-    description = (
-        f'Найдено {count_tours} {plural_tour}, от {min_max_attributes["price"].min} до {min_max_attributes["price"].max}'
-        f' и от {min_max_attributes["nights"].min} ночей до {min_max_attributes["nights"].max} ночей'
-    )
 
     context = dict(
         departures=departures,
         city_departure=current_departure.city_departure,
         tours=tours,
-        description=description
+        count_tours=len(tours),
+        min_max_attributes=min_max_attributes
     )
 
     return render(request, 'tours/departure.html', context=context)
