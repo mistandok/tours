@@ -7,7 +7,7 @@
             </div>
             <div class="card-body">
                 {% load tours_extras %}
-                <h2 class="h5 card-title">{{tour.title}} {{ tour.stars|make_stars }}</h2>
+                <h2 class="h5 card-title">{{tour.title}} {{ tour.stars|repeat_symbol:"★" }}</h2>
                 <p class="card-text">{{tour.description}}</p>
                 <a href="{% url 'tour_info' tour.id %}" class="btn btn-sm btn-primary">Подробнее</a>
             </div>
