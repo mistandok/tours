@@ -12,4 +12,3 @@ def repeat_symbol(count_symbols, symbol):
 @register.filter()
 def plural_ru(count, word):
     return plural_word(word, int(count))
-\q
